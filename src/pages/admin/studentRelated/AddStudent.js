@@ -22,6 +22,12 @@ const AddStudent = ({ situation }) => {
     const [className, setClassName] = useState('')
     const [sclassName, setSclassName] = useState('')
 
+    const [parentName, setparentName] = useState('');
+    const [parentAddress, setparentAddress] = useState('');
+    const [parentContactNumber, setparentContactNumber] = useState('');
+
+
+
     const adminID = currentUser._id
     const role = "Student"
     const attendance = []
@@ -53,7 +59,7 @@ const AddStudent = ({ situation }) => {
         }
     }
 
-    const fields = { name, rollNum, password, sclassName, adminID, role, attendance }
+    const fields = { name, rollNum, password, sclassName, adminID, role, attendance, parentName, parentAddress, parentContactNumber }
 
     const submitHandler = (event) => {
         event.preventDefault()
@@ -94,6 +100,24 @@ const AddStudent = ({ situation }) => {
                         value={name}
                         onChange={(event) => setName(event.target.value)}
                         autoComplete="name" required />
+
+                    <label>Parent's Name</label>
+                    <input className="registerInput" type="text" placeholder="Enter parent's name..."
+                        value={parentName}
+                        onChange={(event) => setparentName(event.target.value)}
+                        autoComplete="parentName" required />
+
+                    <label>Parent's Address</label>
+                    <input className="registerInput" type="text" placeholder="Enter parent's address..."
+                        value={parentAddress}
+                        onChange={(event) => setparentAddress(event.target.value)}
+                        autoComplete="parentAddress" required />
+
+                    <label>Parent's Contact number</label>
+                    <input className="registerInput" type="number" placeholder="Enter student's parent's contact number..."
+                        value={parentContactNumber}
+                        onChange={(event) => setparentContactNumber(event.target.value)}
+                        required />
 
                     {
                         situation === "Student" &&

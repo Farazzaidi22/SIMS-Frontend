@@ -54,6 +54,10 @@ const ViewStudent = () => {
 
     const [openStates, setOpenStates] = useState({});
 
+    const [parentName, setparentName] = useState('');
+    const [parentAddress, setparentAddress] = useState('');
+    const [parentContactNumber, setparentContactNumber] = useState('');
+
     const [showPopup, setShowPopup] = useState(false);
     const [message, setMessage] = useState("");
 
@@ -76,8 +80,8 @@ const ViewStudent = () => {
     };
 
     const fields = password === ""
-        ? { name, rollNum }
-        : { name, rollNum, password }
+        ? { name, rollNum, parentName, parentAddress, parentContactNumber, }
+        : { name, rollNum, parentName, parentAddress, parentContactNumber, password }
 
     useEffect(() => {
         if (userDetails) {
@@ -87,6 +91,10 @@ const ViewStudent = () => {
             setStudentSchool(userDetails.school || '');
             setSubjectMarks(userDetails.examResult || '');
             setSubjectAttendance(userDetails.attendance || []);
+
+            setparentName(userDetails.parentName || '');
+            setparentAddress(userDetails.parentAddress || '');
+            setparentContactNumber(userDetails.parentContactNumber || '');
         }
     }, [userDetails]);
 
@@ -358,7 +366,7 @@ const ViewStudent = () => {
                     Delete
                 </Button>
                 <br />
-                {/* <Button variant="contained" sx={styles.styledButton} className="show-tab" onClick={() => { setShowTab(!showTab) }}>
+                <Button variant="contained" sx={styles.styledButton} className="show-tab" onClick={() => { setShowTab(!showTab) }}>
                     {
                         showTab
                             ? <KeyboardArrowUp />
@@ -376,6 +384,24 @@ const ViewStudent = () => {
                                 onChange={(event) => setName(event.target.value)}
                                 autoComplete="name" required />
 
+                            <label>Parent's Name</label>
+                            <input className="registerInput" type="text" placeholder="Enter parent's name..."
+                                value={parentName}
+                                onChange={(event) => setparentName(event.target.value)}
+                                autoComplete="parentName" required />
+
+                            <label>Parent's Address</label>
+                            <input className="registerInput" type="text" placeholder="Enter parent's address..."
+                                value={parentAddress}
+                                onChange={(event) => setparentAddress(event.target.value)}
+                                autoComplete="parentAddress" required />
+
+                            <label>Parent's Contact number</label>
+                            <input className="registerInput" type="number" placeholder="Enter student's parent's contact number..."
+                                value={parentContactNumber}
+                                onChange={(event) => setparentContactNumber(event.target.value)}
+                                required />
+
                             <label>Roll Number</label>
                             <input className="registerInput" type="number" placeholder="Enter user's Roll Number..."
                                 value={rollNum}
@@ -391,7 +417,7 @@ const ViewStudent = () => {
                             <button className="registerButton" type="submit" >Update</button>
                         </form>
                     </div>
-                </Collapse> */}
+                </Collapse>
             </div>
         )
     }

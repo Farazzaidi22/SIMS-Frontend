@@ -381,37 +381,37 @@ const ViewStudent = () => {
                             <label>Name</label>
                             <input className="registerInput" type="text" placeholder="Enter user's name..."
                                 value={name}
-                                onChange={(event) => setName(event.target.value)}
+                                onChange={(event) => setName((prevVal) => event.target.value)}
                                 autoComplete="name" required />
 
                             <label>Parent's Name</label>
                             <input className="registerInput" type="text" placeholder="Enter parent's name..."
                                 value={parentName}
-                                onChange={(event) => setparentName(event.target.value)}
+                                onChange={(event) => setparentName((prevVal) => event.target.value)}
                                 autoComplete="parentName" required />
 
                             <label>Parent's Address</label>
                             <input className="registerInput" type="text" placeholder="Enter parent's address..."
                                 value={parentAddress}
-                                onChange={(event) => setparentAddress(event.target.value)}
+                                onChange={(event) => setparentAddress((prevVal) => event.target.value)}
                                 autoComplete="parentAddress" required />
 
                             <label>Parent's Contact number</label>
                             <input className="registerInput" type="number" placeholder="Enter student's parent's contact number..."
                                 value={parentContactNumber}
-                                onChange={(event) => setparentContactNumber(event.target.value)}
+                                onChange={(event) => setparentContactNumber((prevVal) => event.target.value)}
                                 required />
 
                             <label>Roll Number</label>
                             <input className="registerInput" type="number" placeholder="Enter user's Roll Number..."
                                 value={rollNum}
-                                onChange={(event) => setRollNum(event.target.value)}
+                                onChange={(event) => setRollNum((prevVal) => event.target.value)}
                                 required />
 
                             <label>Password</label>
                             <input className="registerInput" type="password" placeholder="Enter user's password..."
                                 value={password}
-                                onChange={(event) => setPassword(event.target.value)}
+                                onChange={(event) => setPassword((prevVal) => event.target.value)}
                                 autoComplete="new-password" />
 
                             <button className="registerButton" type="submit" >Update</button>
@@ -442,7 +442,7 @@ const ViewStudent = () => {
                             </Box>
                             <Container sx={{ marginTop: "3rem", marginBottom: "4rem" }}>
                                 <TabPanel value="1">
-                                    <StudentDetailsSection />
+                                    {StudentDetailsSection()}
                                 </TabPanel>
                                 <TabPanel value="2">
                                     <StudentAttendanceSection />

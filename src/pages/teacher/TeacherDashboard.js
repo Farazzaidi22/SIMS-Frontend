@@ -22,6 +22,7 @@ import TeacherComplain from './TeacherComplain';
 import TeacherHomePage from './TeacherHomePage';
 import TeacherProfile from './TeacherProfile';
 import TeacherViewStudent from './TeacherViewStudent';
+import TeacherViewClassAttendance from './TeacherViewClassAttendance';
 import StudentExamMarks from '../admin/studentRelated/StudentExamMarks';
 
 const TeacherDashboard = () => {
@@ -83,6 +84,9 @@ const TeacherDashboard = () => {
 
                         <Route path="/Teacher/class" element={<TeacherClassDetails />} />
                         <Route path="/Teacher/class/student/:id" element={<TeacherViewStudent />} />
+
+                        <Route path="/Teacher/class/attendance/:id" element={<TeacherViewClassAttendance />} />
+
 
                         <Route path="/Teacher/class/student/attendance/:studentID/:subjectID" element={<StudentAttendance situation="Subject" />} />
                         <Route path="/Teacher/class/student/marks/:studentID/:subjectID" element={<StudentExamMarks situation="Subject" />} />

@@ -158,9 +158,12 @@ const TeacherViewClassAttendance = () => {
                     <input
                       type="checkbox"
                       checked={student.present}
-                      onChange={() =>
-                        handleCheckboxChange(index, "present", student.present)
-                      }
+                      onChange={(e) => {
+                        if (e.target.checked) {
+                          student.absent = false;
+                        }
+                        handleCheckboxChange(index, "present", student.present);
+                      }}
                     />
                   </td>
                   <td
@@ -173,9 +176,12 @@ const TeacherViewClassAttendance = () => {
                     <input
                       type="checkbox"
                       checked={student.absent}
-                      onChange={() =>
-                        handleCheckboxChange(index, "absent", student.absent)
-                      }
+                      onChange={(e) => {
+                        if (e.target.checked) {
+                          student.present = false;
+                        }
+                        handleCheckboxChange(index, "absent", student.absent);
+                      }}
                     />
                   </td>
                 </tr>

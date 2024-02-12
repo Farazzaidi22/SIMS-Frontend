@@ -26,6 +26,7 @@ const TeacherViewClassAttendance = () => {
       absent: false,
     }))
   );
+
   const [showPopup, setShowPopup] = useState(false);
   const [date, setDate] = React.useState(false);
 
@@ -36,19 +37,54 @@ const TeacherViewClassAttendance = () => {
     }
 
     let studentID = attendanceData[index]._id;
-    let status = value === true ? "Present" : "Absent";
+    let status = field === "present" ? "Present" : "Absent";
 
     const fields = { subName: subjectID, status, date };
+    dispatch(updateStudentFields(studentID, fields, "StudentAttendance"));
 
     setAttendanceData((prevData) =>
       prevData.map((student, i) => {
         if (i === index) {
-          dispatch(updateStudentFields(studentID, fields, "StudentAttendance"));
           return { ...student, [field]: !student[field] };
         }
         return student;
       })
     );
+  };
+
+  const handleDateChange = (event) => {
+    const selectedDate = event.target.value;
+    setDate(selectedDate);
+
+    const updatedAttendanceData = attendanceData.map((student) => {
+      const attendanceForDate = student.attendance.find(
+        (entry) =>
+          new Date(entry.date).toISOString().split("T")[0] ===
+          event.target.value
+      );
+
+      // If attendance data for the selected date is found
+      if (attendanceForDate) {
+        // Check if the status is Present
+        if (attendanceForDate.status === "Present") {
+          return { ...student, present: true, absent: false };
+        }
+        // Check if the status is Absent
+        else if (attendanceForDate.status === "Absent") {
+          return { ...student, present: false, absent: true };
+        }
+      } else {
+        return { ...student, present: false, absent: false };
+      }
+
+      // If attendance data for the selected date is not found
+      // or if the status is neither Present nor Absent
+      // Keep the present and absent properties unchanged
+      return student;
+    });
+
+    // Update the state with the modified attendance data
+    setAttendanceData(updatedAttendanceData);
   };
 
   return (
@@ -75,7 +111,7 @@ const TeacherViewClassAttendance = () => {
               className="registerInput"
               placeholder="Select attendance date"
               value={date}
-              onChange={(event) => setDate(event.target.value)}
+              onChange={handleDateChange}
               required
             />
           </h3>

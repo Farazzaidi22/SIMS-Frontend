@@ -136,7 +136,7 @@ const LoginPage = ({ role }) => {
                         }}
                     >
                         <Typography variant="h4" sx={{ mb: 2, color: "#2c2143" }}>
-                            {role} Login
+                            {role !== "Student" ? role : "Parent"} Login
                         </Typography>
                         <Typography variant="h7">
                             Welcome back! Please enter your details
@@ -149,7 +149,7 @@ const LoginPage = ({ role }) => {
                                         required
                                         fullWidth
                                         id="rollNumber"
-                                        label="Enter your Roll Number"
+                                        label="Enter your student Roll Number"
                                         name="rollNumber"
                                         autoComplete="off"
                                         type="number"

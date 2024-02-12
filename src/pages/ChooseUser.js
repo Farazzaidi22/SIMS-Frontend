@@ -106,9 +106,9 @@ const ChooseUser = ({ visitor }) => {
                   <School fontSize="large" />
                 </Box>
                 <StyledTypography>
-                  Student
+                  Parent
                 </StyledTypography>
-                Login as a student to explore course materials and assignments.
+                Login as a parent to explore course materials and assignments.
               </div>
             </StyledPaper>
           </Grid>
